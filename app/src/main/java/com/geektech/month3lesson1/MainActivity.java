@@ -11,7 +11,7 @@ import android.widget.Button;
 import android.widget.EditText;
 
 public class MainActivity extends Activity {
-    EditText editTextSubject,editTextMessage;
+    EditText editTextSubject,editTextMessage,editTextEmail;
     Button send;
     @SuppressLint("MissingInflatedId")
     @Override
@@ -21,6 +21,7 @@ public class MainActivity extends Activity {
 
         editTextSubject=(EditText)findViewById(R.id.zagalovok);
         editTextMessage=(EditText)findViewById(R.id.soobshenie);
+        editTextEmail=(EditText)findViewById(R.id.poshta);
 
         send=(Button)findViewById(R.id.button1);
 
@@ -30,9 +31,12 @@ public class MainActivity extends Activity {
             public void onClick(View arg0) {
                 String heading=editTextSubject.getText().toString();
                 String message=editTextMessage.getText().toString();
+                String to=editTextEmail.getText().toString();
+
 
 
                 Intent email = new Intent(Intent.ACTION_SEND);
+                email.putExtra(Intent.EXTRA_EMAIL, new String[]{ to});
                 email.putExtra(Intent.EXTRA_SUBJECT, heading);
                 email.putExtra(Intent.EXTRA_TEXT, message);
 
